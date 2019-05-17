@@ -13,7 +13,8 @@ body {
   display: flex;
   height: 75px;
   width: 100%;
-  position: fixed; }
+  position: fixed;
+  z-index: 1; }
   #top-nav #left-corner-top {
     display: flex;
     justify-content: center;
@@ -63,4 +64,18 @@ body {
   background-color: aqua;
   width: 95px;
   height: auto;
-  height: 500px; }
+  height: 500px;
+  position: fixed; }
+  #left-nav #nav-list {
+    list-style: none;
+    padding-left: 0px; }
+  #left-nav .nav-item {
+    background-color: coral;
+    width: 95px;
+    height: 95px;
+    margin-left: 0px;
+    padding-left: 0px;
+    border-bottom: 1px solid #f8f8f8; }
+
+.nav-item:first-child {
+  margin-top: 75px; }
