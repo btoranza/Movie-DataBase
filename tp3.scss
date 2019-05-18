@@ -1,3 +1,5 @@
+// SASS UTILITIES
+
 $main-color: white;
 $main-font: 'Roboto', sans-serif;
 
@@ -6,6 +8,8 @@ $main-font: 'Roboto', sans-serif;
     justify-content: center;
     align-items: center;
 }
+
+// GENERAL STYLING
 
 * {
     box-sizing: border-box;
@@ -16,11 +20,12 @@ body {
     font-family: $main-font;
 }
 
+// NAV BARS
 #nav-container {
     display: flex;
 
 }
-// TOP WHITE NAV (SEARCH)
+// TOP NAV (SEARCH)
 
 #top-nav {
     box-sizing: border-box;
@@ -36,11 +41,12 @@ body {
 
         #logo-container {
             width: 45px;
-            height: 40px;
+            height: 45px;
             img {
                 width: 45px;
-                height: 40px;
+                height: 45px;
             }
+            margin-left: -7px;
         }
     }
     position: fixed;
@@ -49,7 +55,7 @@ body {
 
 #nav-top {
     display: flex;
-    width: 80%;
+    width: 93.8%;
     background-color: $main-color;
     height: 100%;
 
@@ -85,11 +91,12 @@ body {
     }
 }
 
+// LEFT NAV
+
 #left-nav {
-    background-color: aqua;
+    background-color: $main-color;
     width: 95px;
-    height: auto;
-    height: 500px;
+    height: 100%;
     position: fixed;
 
     #nav-list {
@@ -98,15 +105,72 @@ body {
     }
 
     .nav-item {
-        background-color: coral;
+        background-color: $main-color;
         width: 95px;
         height: 95px;
         margin-left: 0px;
         padding-left: 0px;
         border-bottom: 1px solid #f8f8f8;
+        @include centrar();
+        flex-direction: column;
+        font-size: 9px;
+        font-weight: 300;
+        letter-spacing: .5px;
+        color: rgba(8,28,36,.7);
+        cursor: pointer;
+
+        svg {
+            width: 20px;
+            height: 20px;
+            fill: rgba(8,28,36,.7);
+            margin-bottom: 9px;
+        }
         }
     }
 
     .nav-item:first-child {
         margin-top: 75px;
     }
+
+    // MAIN SECTION
+
+    #main-section {
+        width: calc(100% - 95px);
+        height: 384px;
+        background-color: #7e7e7e;
+        margin-top: 75px;
+        margin-left: 95px;
+        position: relative;
+
+        // HEADER
+
+        #header-cont {
+            background-color: blue;
+            #header-image {
+            height: 100%;
+            width: 100%;
+            @include centrar();
+            background-image: url(assets/moon.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: 50% 50%;
+            opacity:0.4;
+            z-index: 1;
+        }
+
+        #header-title {
+            font-weight: 500;
+            font-size: 28px;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+            margin: 0;
+            color: black;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+        }
+
+
+    }
+
+}
