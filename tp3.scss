@@ -2,6 +2,9 @@
 
 $main-color: white;
 $main-font: 'Roboto', sans-serif;
+$main-section-width: calc(100% - 95px);
+
+$mobile-breakpoint: 480px;
 
 @mixin centrar {
     display: flex;
@@ -40,6 +43,8 @@ body {
             background-color: black;
             width: 95px;
             height: 75px;
+            cursor: pointer;
+
             #logo-container {
                 width: 45px;
                 height: 45px;
@@ -53,7 +58,7 @@ body {
         
         #nav-top {
             display: flex;
-            width: 93.8%;
+            width: $main-section-width;
             background-color: $main-color;
             height: 100%;
         
@@ -135,7 +140,7 @@ body {
 // MAIN SECTION
 
 #main-section {
-    width: calc(100% - 95px);
+    width: $main-section-width;
     height: auto;
     margin-top: 75px;
     margin-left: 95px;
@@ -146,6 +151,7 @@ body {
         background-color: #7e7e7e;
         height: 384px;
         position: relative;
+        width: 100%;
         
         #header-image {
         height: 100%;
@@ -174,17 +180,18 @@ body {
 
     .wrapper {
 
-        background-color: green;
-        
+        background-color: #f8f8f8;
+        width: 100%;
+
         .movies {
-            padding: 10px;
-            background-color: blue;
+            width: 100%;
+            padding: 30px;
 
             .movies-header {
-                background-color: yellow;
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
+                padding: 0px 30px;
 
                 h1 {
                     font-size: 18px;
@@ -198,27 +205,29 @@ body {
                     font-weight: 300;
                     letter-spacing: .5px;
                     color: rgba(8,28,36,.5);
+                    cursor: pointer;
                 }
             }
 
             .movies-list {
-                background-color: blueviolet;
+                width: 100%;
                 list-style: none;
                 display: flex;
                 padding: 0;
                 margin: 0;
+                flex-wrap: wrap;
 
                 .movies-item {
                     padding: 30px;
                     width: 20%;
-                    background-color: crimson;
                     
                     .movie-img-cont {
                         height: 320px;
-                        width: 213px;
+                        width: 100%;
                         img {
                             width: 100%;
                             height: auto;
+                            border-style: none;
                         }
                     }
 
@@ -227,10 +236,24 @@ body {
                         letter-spacing: .5px;
                         color: rgba(8,28,36,.5);
                         font-weight: 300;
+                        padding-top: 15px;
                     }
 
                 }
             }
         }
+    }
+}
+
+@media (max-width: $mobile-breakpoint) {
+
+    #left-nav {
+        display: none;
+        position: relative;
+        background-color: transparent;
+    }
+
+    #main-section {
+        width: 100%;
     }
 }
