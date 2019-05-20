@@ -24,6 +24,11 @@ body {
     line-height: 1.6;
 }
 
+@font-face {
+    font-family: voyage;
+    src: url('assets/voyage.otf');
+  }
+
 // NAV BARS
 
 #nav-container {
@@ -57,7 +62,7 @@ body {
         }
         
         #nav-top {
-            display: flex;
+            @include centrar();
             width: $main-section-width;
             background-color: $main-color;
             height: 100%;
@@ -65,7 +70,7 @@ body {
             #search-nav {
                 display: flex;
                 align-items: center;
-                width: 30%;
+                width: 100%;
     
                 form {
                     @include centrar();
@@ -92,8 +97,23 @@ body {
                     }
                 }
             }
+
+            #hamb-menu {
+                display: none;
+                width: 55px;
+                height: 50px;
+                padding-right: 5px;
+                cursor: pointer;
+                border-left: 1px solid #f8f8f8;
+
+                i {
+                    font-size: 1.9em;
+                    color: rgba(8,28,36,.5);
+                }
+            }
         }
     }
+
 
     // LEFT NAV
 
@@ -108,7 +128,6 @@ body {
             padding-left: 0px;
 
             .nav-item {
-                background-color: $main-color;
                 width: 95px;
                 height: 95px;
                 margin-left: 0px;
@@ -149,7 +168,7 @@ body {
     // HEADER
     #header-cont {
         background-color: #7e7e7e;
-        height: 384px;
+        height: 380px;
         position: relative;
         width: 100%;
         
@@ -164,6 +183,7 @@ body {
         }
 
         #header-title {
+            font-family: voyage;
             font-weight: 500;
             font-size: 28px;
             text-transform: uppercase;
@@ -245,15 +265,88 @@ body {
     }
 }
 
+//MOBILE VERSION
+
 @media (max-width: $mobile-breakpoint) {
 
-    #left-nav {
-        display: none;
+    #nav-container {
         position: relative;
-        background-color: transparent;
+        
+        #top-nav {
+            height: 50px;
+
+            #nav-top {
+                width: calc(100% - 55px);
+
+                #search-nav {
+                    width: 100%;
+                    form {
+                        margin-left: 20px;
+                        
+                        svg {
+                            width: 14px;
+                            height: 14px;
+                        }
+                    }
+                }
+
+                #hamb-menu {
+                    @include centrar();
+                }
+            }
+
+            #left-corner-top {
+                height: 50px;
+                width: 55px;
+
+                #logo-container {
+                    width: 30px;
+                    height: 30px;
+                    margin-left: 0px;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+            }
+        }
+        
+        #left-nav {
+
+            background-color: $main-color;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            z-index: 1;
+            top: 50px;
+            
+            #nav-list {
+                background-color: $main-color;
+                display: flex;
+                flex-wrap: wrap;
+                margin: 0px;
+
+                .nav-item {
+                    width: 50%;
+                
+
+                &:first-child {
+                    margin-top: 0px;
+                }
+            }
+        }
+        }
     }
 
     #main-section {
         width: 100%;
+        margin-left: 0px;
+        margin-top: 50px;
+
+        #header-cont {
+            height: 200px;
+        }
     }
 }
+
