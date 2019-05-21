@@ -158,7 +158,7 @@ body {
     
 // MAIN SECTION
 
-#main-section {
+#main-section, #main-category {
     width: $main-section-width;
     margin-top: 75px;
     margin-left: 95px;
@@ -260,6 +260,25 @@ body {
 
                 }
             }
+
+            .load-cont {
+                padding: 25px 0;
+                text-align: center;
+
+                button {
+                    font-size: 12px;
+                    padding: 6px 20px 5px;
+                    display: inline-block;
+                    border: 1px solid #081c24;
+                    text-transform: uppercase;
+                    font-weight: 300;
+                    line-height: 2;
+                    letter-spacing: .5px;
+                    cursor: pointer;
+                    outline: none;
+                    background-color: transparent;
+                }
+            }
         }
     }
 }
@@ -329,8 +348,8 @@ body {
 
                 .nav-item {
                     width: 50%;
-
-                &:first-child {
+            
+                    &:first-child {
                     margin-top: 0px;
                 }
             }
@@ -338,7 +357,7 @@ body {
     }
 }
 
-    #main-section {
+    #main-section, #main-category{
         width: 100%;
         margin-left: 0px;
         margin-top: 50px;
@@ -347,13 +366,46 @@ body {
             height: 200px;
 
             #header-title {
-                font-size: 16px;
-                bottom: 10px;
-                right: 10px;
+                width: 175px;
+                font-size: 15px;
+                bottom: -12px;
+                right: 6px;
                 text-align: end;
                 letter-spacing: 7px;
+            }
+        }
+
+        .wrapper {
+
+            .movies {
+                padding: 10px;
+
+                .movies-header {
+                    padding: 20px 10px;
+
+                    h1 {
+                        margin: 0;
+                        font-size: 16px;
+                        line-height: 16px;
+                    }
+                }
+
+                .movies-list {
+
+                    .movies-item {
+                        padding: 10px;
+                        width: 50%;
+                        &:last-child {
+                            display: none;
+                        }
+
+                        .movie-img-cont {
+                            height: 225.4px;
+                    }
+                }
             }
         }
     }
 }
 
+}

@@ -107,17 +107,17 @@ body {
           fill: rgba(8, 28, 36, 0.7);
           margin-bottom: 9px; }
 
-#main-section {
+#main-section, #main-category {
   width: calc(100% - 95px);
   margin-top: 75px;
   margin-left: 95px;
   background-color: lightpink; }
-  #main-section #header-cont {
+  #main-section #header-cont, #main-category #header-cont {
     background-color: #7e7e7e;
     height: 380px;
     position: relative;
     width: 100%; }
-    #main-section #header-cont #header-image {
+    #main-section #header-cont #header-image, #main-category #header-cont #header-image {
       height: 100%;
       width: 100%;
       background-image: url(assets/moon.jpg);
@@ -125,7 +125,7 @@ body {
       background-repeat: no-repeat;
       background-position: 50% 50%;
       opacity: 0.4; }
-    #main-section #header-cont #header-title {
+    #main-section #header-cont #header-title, #main-category #header-cont #header-title {
       font-family: voyage;
       font-weight: 500;
       font-size: 33px;
@@ -136,51 +136,66 @@ body {
       position: absolute;
       bottom: -30px;
       right: 16px; }
-  #main-section .wrapper {
+  #main-section .wrapper, #main-category .wrapper {
     background-color: #f8f8f8;
     width: 100%; }
-    #main-section .wrapper .movies {
+    #main-section .wrapper .movies, #main-category .wrapper .movies {
       width: 100%;
       padding: 30px; }
-      #main-section .wrapper .movies .movies-header {
+      #main-section .wrapper .movies .movies-header, #main-category .wrapper .movies .movies-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding: 0px 30px; }
-        #main-section .wrapper .movies .movies-header h1 {
+        #main-section .wrapper .movies .movies-header h1, #main-category .wrapper .movies .movies-header h1 {
           font-size: 18px;
           line-height: 18px;
           color: #081c24;
           font-weight: 300; }
-        #main-section .wrapper .movies .movies-header span {
+        #main-section .wrapper .movies .movies-header span, #main-category .wrapper .movies .movies-header span {
           font-size: 12px;
           font-weight: 300;
           letter-spacing: .5px;
           color: rgba(8, 28, 36, 0.5);
           cursor: pointer; }
-      #main-section .wrapper .movies .movies-list {
+      #main-section .wrapper .movies .movies-list, #main-category .wrapper .movies .movies-list {
         width: 100%;
         list-style: none;
         display: flex;
         padding: 0;
         margin: 0;
         flex-wrap: wrap; }
-        #main-section .wrapper .movies .movies-list .movies-item {
+        #main-section .wrapper .movies .movies-list .movies-item, #main-category .wrapper .movies .movies-list .movies-item {
           padding: 30px;
           width: 20%; }
-          #main-section .wrapper .movies .movies-list .movies-item .movie-img-cont {
+          #main-section .wrapper .movies .movies-list .movies-item .movie-img-cont, #main-category .wrapper .movies .movies-list .movies-item .movie-img-cont {
             height: 320px;
             width: 100%; }
-            #main-section .wrapper .movies .movies-list .movies-item .movie-img-cont img {
+            #main-section .wrapper .movies .movies-list .movies-item .movie-img-cont img, #main-category .wrapper .movies .movies-list .movies-item .movie-img-cont img {
               width: 100%;
               height: auto;
               border-style: none; }
-          #main-section .wrapper .movies .movies-list .movies-item p {
+          #main-section .wrapper .movies .movies-list .movies-item p, #main-category .wrapper .movies .movies-list .movies-item p {
             font-size: 14px;
             letter-spacing: .5px;
             color: rgba(8, 28, 36, 0.5);
             font-weight: 300;
             padding-top: 15px; }
+      #main-section .wrapper .movies .load-cont, #main-category .wrapper .movies .load-cont {
+        padding: 25px 0;
+        text-align: center; }
+        #main-section .wrapper .movies .load-cont button, #main-category .wrapper .movies .load-cont button {
+          font-size: 12px;
+          padding: 6px 20px 5px;
+          display: inline-block;
+          border: 1px solid #081c24;
+          text-transform: uppercase;
+          font-weight: 300;
+          line-height: 2;
+          letter-spacing: .5px;
+          cursor: pointer;
+          outline: none;
+          background-color: transparent; }
 
 @media (max-width: 480px) {
   #nav-container {
@@ -226,15 +241,31 @@ body {
           width: 50%; }
           #nav-container #left-nav #nav-list .nav-item:first-child {
             margin-top: 0px; }
-  #main-section {
+  #main-section, #main-category {
     width: 100%;
     margin-left: 0px;
     margin-top: 50px; }
-    #main-section #header-cont {
+    #main-section #header-cont, #main-category #header-cont {
       height: 200px; }
-      #main-section #header-cont #header-title {
-        font-size: 16px;
-        bottom: 10px;
-        right: 10px;
+      #main-section #header-cont #header-title, #main-category #header-cont #header-title {
+        width: 175px;
+        font-size: 15px;
+        bottom: -12px;
+        right: 6px;
         text-align: end;
-        letter-spacing: 7px; } }
+        letter-spacing: 7px; }
+    #main-section .wrapper .movies, #main-category .wrapper .movies {
+      padding: 10px; }
+      #main-section .wrapper .movies .movies-header, #main-category .wrapper .movies .movies-header {
+        padding: 20px 10px; }
+        #main-section .wrapper .movies .movies-header h1, #main-category .wrapper .movies .movies-header h1 {
+          margin: 0;
+          font-size: 16px;
+          line-height: 16px; }
+      #main-section .wrapper .movies .movies-list .movies-item, #main-category .wrapper .movies .movies-list .movies-item {
+        padding: 10px;
+        width: 50%; }
+        #main-section .wrapper .movies .movies-list .movies-item:last-child, #main-category .wrapper .movies .movies-list .movies-item:last-child {
+          display: none; }
+        #main-section .wrapper .movies .movies-list .movies-item .movie-img-cont, #main-category .wrapper .movies .movies-list .movies-item .movie-img-cont {
+          height: 225.4px; } }
