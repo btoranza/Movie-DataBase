@@ -53,10 +53,9 @@ body {
             #logo-container {
                 width: 45px;
                 height: 45px;
-                margin-left: -7px;
                 img {
-                    width: 45px;
-                    height: 45px;
+                    width: 100%;
+                    height: auto;
                 }
             }
         }
@@ -235,19 +234,23 @@ body {
                 padding: 0;
                 margin: 0;
                 flex-wrap: wrap;
+                justify-content: center;
 
                 .movies-item {
                     padding: 30px;
-                    width: 20%;
+                    width: 272px;
                     
                     .movie-img-cont {
                         height: 320px;
                         width: 100%;
-                        img {
-                            width: 100%;
-                            height: auto;
-                            border-style: none;
+                        background-size: cover !important;
+                        transition-duration: 0.5s;
+                        cursor: pointer;
+                        
+                        &:hover{
+                            transform: scale(1.05);
                         }
+
                     }
 
                     p {
@@ -282,6 +285,10 @@ body {
         }
     }
 }
+
+    #main-category {
+        display: none;
+    }
 
 //MOBILE VERSION
 
@@ -400,7 +407,7 @@ body {
                         }
 
                         .movie-img-cont {
-                            height: 225.4px;
+                            height: 280px;
                     }
                 }
             }
