@@ -79,13 +79,20 @@ principal.addEventListener('click', function (e) {
     actual = 1;
 });
 
+const catMenu = document.querySelector('#left-nav');
+
 navitem.forEach(function(a){
     a.addEventListener('click', function (e) {
         let numero = parseInt(a.getAttribute("numero"));
         actual = numero;
         homeParent.style.display = "none";
         document.querySelector('#main-category').style.display = "block";
-        let pageAdd= '&page=1'
+        let pageAdd= '&page=1';
+
+        if(catMenu.classList.contains('show')){
+            catMenu.classList.remove('show');
+        }
+
 
         if(actual==2) {
             categoryName.textContent = 'Popular Movies';
@@ -98,11 +105,31 @@ navitem.forEach(function(a){
             bringMoviesCat(urlUpcoming+pageAdd);
         }else if (actual==5) {
             categoryName.textContent = 'Now Playing Movies';
-            bringMoviesCat(urlNowPlaying+pageAdd);
-        }
-
-    });
+            bringMoviesCat(urlNowPlaying+pageAdd);}    
+    })
 });
+
+// Menu mobile
+
+const hambMenu = document.querySelector('#hamb-menu');
+
+function fav() {
+    const icon = document.getElementById("icon");
+      if (icon.classList.contains("fa-bars")) {
+        icon.classList.remove("fa-bars");
+        icon.classList.add("fa-times");
+    } else {
+       icon.classList.remove("fa-times");
+       icon.classList.add("fa-bars");
+    }
+ }
+
+hambMenu.addEventListener('click', function(e){
+    catMenu.classList.toggle('show');
+    fav();
+
+})
+
 
 // Search page
 
@@ -158,9 +185,6 @@ loadMoreButton.addEventListener('click', function(e){
     paginaActual += 1;
     pageAdd = '&page='+paginaActual;
 
-    console.log(paginaActual);
-    console.log(pageAdd);
-
     if(actual==2) {
         concatResults(urlPopular+pageAdd);
     }else if (actual==3) {
@@ -170,6 +194,7 @@ loadMoreButton.addEventListener('click', function(e){
     }else if (actual==5) {
         concatResults(urlNowPlaying+pageAdd);
     }else if(actual==6){
+        let urlSearch = 'https://api.themoviedb.org/3/search/movie?api_key=24da6765990bd746993a94b165592b4f&query='+movieSearched+paginaActual;
         concatResults(urlSearch+pageAdd);
     }
 })
