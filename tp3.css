@@ -276,7 +276,7 @@ body {
 
 @media (min-width: 1800px) {
   #main-section .wrapper .movies .movies-header, #main-category .wrapper .movies .movies-header {
-    padding: 8px 20px; }
+    padding: 8px 33px; }
   #main-section .wrapper .movies .movies-list .movies-item, #main-category .wrapper .movies .movies-list .movies-item {
     width: 349px; }
     #main-section .wrapper .movies .movies-list .movies-item .movie-img-cont, #main-category .wrapper .movies .movies-list .movies-item .movie-img-cont {
