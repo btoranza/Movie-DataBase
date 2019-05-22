@@ -38,6 +38,8 @@ bringMoviesHome(urlNowPlaying, 3);
 
 // FETCH for each category
 
+const catList = document.querySelector('#main-category .movies-list');
+
 const bringMoviesCat = (url) =>
 
     fetch(url)
@@ -45,7 +47,6 @@ const bringMoviesCat = (url) =>
     .then(data => {
 
         const movies = data.results;
-        const catList = document.querySelector('#main-category .movies-list');
         const movieAmount = document.querySelector('#main-category .movies-header span');
         
         let lis = movies.map(movie =>
@@ -78,44 +79,14 @@ principal.addEventListener('click', function (e) {
     actual = 1;
 });
 
-const categoryName = document.querySelector('#main-category .movies-header h1');
-let paginaActual = 1;
-let pageAdd= '&page=1'
-
-// Load more button
-
-const loadMoreButton = document.querySelector('#main-category .load-cont button');
-
-loadMoreButton.addEventListener('click', function(e){
-
-    paginaActual += 1;
-    pageAdd = '&page='+paginaActual;
-
-    console.log(paginaActual);
-    console.log(pageAdd);
-
-    if(actual==2) {
-        categoryName.textContent = 'Popular Movies';
-        bringMoviesCat(urlPopular+pageAdd);
-    }else if (actual==3) {
-        categoryName.textContent = 'Top Rated Movies';
-        bringMoviesCat(urlTopRated+pageAdd);
-    }else if (actual==4) {
-        categoryName.textContent = 'Upcoming Movies';
-        bringMoviesCat(urlUpcoming+pageAdd);
-    }else if (actual==5) {
-        categoryName.textContent = 'Now Playing Movies';
-        bringMoviesCat(urlNowPlaying+pageAdd);
-    }
-
-})
-
 navitem.forEach(function(a){
     a.addEventListener('click', function (e) {
         let numero = parseInt(a.getAttribute("numero"));
         actual = numero;
         homeParent.style.display = "none";
         document.querySelector('#main-category').style.display = "block";
+        let pageAdd= '&page=1'
+
         if(actual==2) {
             categoryName.textContent = 'Popular Movies';
             bringMoviesCat(urlPopular+pageAdd);
@@ -135,22 +106,70 @@ navitem.forEach(function(a){
 
 // Search page
 
+const categoryName = document.querySelector('#main-category .movies-header h1');
+let paginaActual = 1;
+
 const searchInput = document.querySelector('#search-nav form');
 const input = document.querySelector('#search-nav input');
+let movieSearched = input.value;
 
 searchInput.addEventListener('submit', function(e) {
 
     e.preventDefault();
     actual = 6;
-    let movieSearched = input.value;
-
+    movieSearched = input.value;
     if(movieSearched) {
     homeParent.style.display = "none";
     document.querySelector('#main-category').style.display = "block";
     categoryName.textContent = 'Search Results';
-    const urlSearch = 'https://api.themoviedb.org/3/search/movie?api_key=24da6765990bd746993a94b165592b4f&query='+movieSearched+'&page='+paginaActual;
+    let urlSearch = 'https://api.themoviedb.org/3/search/movie?api_key=24da6765990bd746993a94b165592b4f&query='+movieSearched+'&page='+paginaActual;
     bringMoviesCat(urlSearch);
 
     }
 
+})
+
+const concatResults = (url) => 
+
+    fetch(url) 
+        .then(res => res.json())
+        .then(data => { 
+            
+            const results = data.results;
+            let lis = results.map(movie => 
+                `<li class="movies-item">
+                <div class="movie-img-cont" style="background: url('http://image.tmdb.org/t/p/original${movie.poster_path}') no-repeat center center">
+                </div>
+                <p>${movie.title}</p>
+            </li>`
+            ).join('');
+
+            catList.innerHTML += lis;
+
+        })
+
+
+// Load more button
+const loadMoreButton = document.querySelector('#main-category .load-cont button');
+let urlSearch = 'https://api.themoviedb.org/3/search/movie?api_key=24da6765990bd746993a94b165592b4f&query='+movieSearched+'&page='+paginaActual;
+
+loadMoreButton.addEventListener('click', function(e){
+
+    paginaActual += 1;
+    pageAdd = '&page='+paginaActual;
+
+    console.log(paginaActual);
+    console.log(pageAdd);
+
+    if(actual==2) {
+        concatResults(urlPopular+pageAdd);
+    }else if (actual==3) {
+        concatResults(urlTopRated+pageAdd);
+    }else if (actual==4) {
+        concatResults(urlUpcoming+pageAdd);
+    }else if (actual==5) {
+        concatResults(urlNowPlaying+pageAdd);
+    }else if(actual==6){
+        concatResults(urlSearch+pageAdd);
+    }
 })
