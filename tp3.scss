@@ -5,6 +5,7 @@ $main-font: 'Roboto', sans-serif;
 $main-section-width: calc(100% - 95px);
 
 $mobile-breakpoint: 480px;
+$bigdesktop-breakpoint: 1800px;
 
 @mixin centrar {
     display: flex;
@@ -358,13 +359,13 @@ body {
             
                     &:first-child {
                     margin-top: 0px;
+                    }
                 }
             }
         }
     }
-}
 
-    #main-section, #main-category{
+    #main-section, #main-category {
         width: 100%;
         margin-left: 0px;
         margin-top: 50px;
@@ -408,6 +409,7 @@ body {
 
                         .movie-img-cont {
                             height: 280px;
+                        }
                     }
                 }
             }
@@ -415,4 +417,31 @@ body {
     }
 }
 
+//BIG DESKTOP
+
+@media (min-width: $bigdesktop-breakpoint) {
+
+    #main-section, #main-category {
+
+        .wrapper {
+
+            .movies {
+
+                .movies-header {
+                    padding: 8px 20px;
+                }
+
+                .movies-list {
+
+                    .movies-item {
+                        width: 349px;
+
+                        .movie-img-cont {
+                            height: 435px;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

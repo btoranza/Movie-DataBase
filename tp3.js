@@ -46,7 +46,7 @@ const bringMoviesCat = (url) =>
     .then(data => {
 
         const movies = data.results;
-        const ul = document.querySelectorAll('#main-category .movies-list');
+        const catList = document.querySelector('#main-category .movies-list');
         
         let lis = movies.map(movie =>
             
@@ -57,7 +57,7 @@ const bringMoviesCat = (url) =>
         </li>`
         ).join('');
 
-        ul.innerHTML = lis;
+        catList.innerHTML = lis;
         
 })
 
@@ -91,10 +91,13 @@ navitem.forEach(function(a){
             bringMoviesCat(urlPopular+pageAdd);
         }else if (actual==3) {
             categoryName.textContent = 'Top Rated Movies';
+            bringMoviesCat(urlTopRated+pageAdd);
         }else if (actual==4) {
             categoryName.textContent = 'Upcoming Movies';
+            bringMoviesCat(urlUpcoming+pageAdd);
         }else if (actual==5) {
             categoryName.textContent = 'Now Playing Movies';
+            bringMoviesCat(urlNowPlaying+pageAdd);
         }
 
     });
