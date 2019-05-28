@@ -365,7 +365,36 @@ body {
         #main-section .wrapper .movies .movies-list .movies-item:last-child, #main-category .wrapper .movies .movies-list .movies-item:last-child {
           display: none; }
         #main-section .wrapper .movies .movies-list .movies-item .movie-img-cont, #main-category .wrapper .movies .movies-list .movies-item .movie-img-cont {
-          height: 280px; } }
+          height: 280px; }
+  #movie-modal #movie-modal-box {
+    margin: 0px; }
+    #movie-modal #movie-modal-box #movie-modal-header {
+      height: 250px;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+      #movie-modal #movie-modal-box #movie-modal-header #movie-modal-poster {
+        display: none; }
+      #movie-modal #movie-modal-box #movie-modal-header #movie-modal-title {
+        width: 100%;
+        margin: auto;
+        text-align: center;
+        padding: 20px; }
+        #movie-modal #movie-modal-box #movie-modal-header #movie-modal-title h1 {
+          font-weight: 500;
+          line-height: 1.4;
+          font-size: 24px; }
+    #movie-modal #movie-modal-box #movie-modal-main {
+      min-height: calc(100% - 250px); }
+      #movie-modal #movie-modal-box #movie-modal-main #movie-modal-info {
+        width: 100%;
+        padding: 20px;
+        margin-left: 0px; }
+        #movie-modal #movie-modal-box #movie-modal-main #movie-modal-info #movie-modal-description {
+          font-size: 13px;
+          margin-bottom: 20px; }
+        #movie-modal #movie-modal-box #movie-modal-main #movie-modal-info #movie-modal-details .movie-modal-details-block h1 {
+          font-size: 14px; } }
 
 @media (min-width: 1800px) {
   #main-section .wrapper .movies .movies-header, #main-category .wrapper .movies .movies-header {
@@ -375,7 +404,7 @@ body {
     #main-section .wrapper .movies .movies-list .movies-item .movie-img-cont, #main-category .wrapper .movies .movies-list .movies-item .movie-img-cont {
       height: 435px; } }
 
-@media (min-width: 768px) {
+@media (max-width: 768px) and (min-width: 420px) {
   #header-title {
     text-align: end;
     font-size: 25px !important;

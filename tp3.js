@@ -77,6 +77,7 @@ principal.addEventListener('click', function (e) {
         homeParent.style.display = "block";
     } 
     actual = 1;
+    
 });
 
 const catMenu = document.querySelector('#left-nav');
@@ -92,6 +93,8 @@ navitem.forEach(function(a){
         if(catMenu.classList.contains('show')){
             catMenu.classList.remove('show');
         }
+
+        fav();
 
 
         if(actual==2) {
@@ -154,6 +157,11 @@ searchInput.addEventListener('submit', function(e) {
 
     }
 
+    if(catMenu.classList.contains('show')){
+        catMenu.classList.remove('show');
+    }
+    fav();
+
 })
 
 const concatResults = (url) => 
@@ -199,4 +207,9 @@ loadMoreButton.addEventListener('click', function(e){
     }
 })
 
-let clickedMovie = document.querySelector();
+const clickedMovie = document.querySelector('.movies-list');
+
+clickedMovie.forEach(function (movie){
+    console.log(movie);
+})
+

@@ -548,6 +548,63 @@ body {
             }
         }
     }
+
+    #movie-modal {
+
+        #movie-modal-box {
+            margin: 0px;
+
+            #movie-modal-header {
+                height: 250px;
+                @include centrar();
+
+                #movie-modal-poster {
+                    display: none;
+                }
+
+                #movie-modal-title {
+                    width: 100%;
+                    margin: auto;
+                    text-align: center;
+                    padding: 20px;
+
+                    h1 {
+                        font-weight: 500;
+                        line-height: 1.4;
+                        font-size: 24px;
+                    }
+                }
+            }
+
+            #movie-modal-main {
+                min-height: calc(100% - 250px);
+
+                #movie-modal-info {
+                    width: 100%;
+                    padding: 20px;
+                    margin-left: 0px;
+
+                    #movie-modal-description {
+                        font-size: 13px;
+                        margin-bottom: 20px;
+                    }
+
+                    #movie-modal-details {
+
+                        .movie-modal-details-block {
+
+                            h1 {
+                                font-size: 14px;
+                            }
+
+                        }
+                    }
+                    
+                }
+            }
+        }
+    }
+
 }
 
 //BIG DESKTOP
@@ -581,7 +638,7 @@ body {
 
 // TABLET 
 
-@media (min-width: 768px) {
+@media (max-width:768px) and (min-width:420px) {
 
     #header-title {
         text-align: end;
