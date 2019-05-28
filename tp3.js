@@ -28,6 +28,16 @@ const bringMoviesHome = (url, i) =>
         ).join('');
 
         ul.innerHTML = lis;
+
+        const clickedMovie = document.querySelectorAll('.movies-item');
+        const modalm = document.querySelector('#movie-modal');
+
+        clickedMovie.forEach(function (movieItem){
+            movieItem.addEventListener('click', function (event){
+                modalm.classList.toggle('active');
+            })
+            
+})
         
 })
 
@@ -207,9 +217,5 @@ loadMoreButton.addEventListener('click', function(e){
     }
 })
 
-const clickedMovie = document.querySelector('.movies-list');
 
-clickedMovie.forEach(function (movie){
-    console.log(movie);
-})
 
