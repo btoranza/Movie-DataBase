@@ -194,7 +194,9 @@ loadMoreButton.addEventListener('click', function(e){
     }else if (actual==5) {
         concatResults(urlNowPlaying+pageAdd);
     }else if(actual==6){
-        let urlSearch = 'https://api.themoviedb.org/3/search/movie?api_key=24da6765990bd746993a94b165592b4f&query='+movieSearched+paginaActual;
+        let urlSearch = 'https://api.themoviedb.org/3/search/movie?api_key=24da6765990bd746993a94b165592b4f&query='+movieSearched+pageAdd;
         concatResults(urlSearch+pageAdd);
     }
 })
+
+let clickedMovie = document.querySelector();
