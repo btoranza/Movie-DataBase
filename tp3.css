@@ -115,8 +115,7 @@ body {
 #main-section, #main-category {
   width: calc(100% - 95px);
   margin-top: 75px;
-  margin-left: 95px;
-  background-color: lightpink; }
+  margin-left: 95px; }
   #main-section #header-cont, #main-category #header-cont {
     background-color: #7e7e7e;
     height: 380px;
@@ -204,6 +203,27 @@ body {
           cursor: pointer;
           outline: none;
           background-color: transparent; }
+  #main-section #not-found-cont, #main-category #not-found-cont {
+    position: relative;
+    display: none; }
+    #main-section #not-found-cont #not-found, #main-category #not-found-cont #not-found {
+      background: url(assets/moon-surface.jpg);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      height: calc(100vh - 75px);
+      opacity: 0.7; }
+    #main-section #not-found-cont #not-found-title, #main-category #not-found-cont #not-found-title {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%); }
+      #main-section #not-found-cont #not-found-title h1, #main-category #not-found-cont #not-found-title h1 {
+        font-size: 28px;
+        font-weight: 500;
+        color: #081c24; }
 
 #main-category {
   display: none; }
@@ -372,6 +392,15 @@ body {
           display: none; }
         #main-section .wrapper .movies .movies-list .movies-item .movie-img-cont, #main-category .wrapper .movies .movies-list .movies-item .movie-img-cont {
           height: 280px; }
+    #main-section #not-found-cont #not-found-title, #main-category #not-found-cont #not-found-title {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 100%;
+      transform: translate(-50%, -50%);
+      left: 75%; }
+      #main-section #not-found-cont #not-found-title h1, #main-category #not-found-cont #not-found-title h1 {
+        font-size: 24px; }
   #movie-modal #movie-modal-box {
     margin: 0px; }
     #movie-modal #movie-modal-box #movie-modal-header {

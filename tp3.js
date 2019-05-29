@@ -78,9 +78,8 @@ const bringMoviesHome = (url, i) =>
         let lis = fiveMovies.map(movie =>
             
         `<li id='${movie.id}' class="movies-item">
-            <div class="movie-img-cont" style="background: url('http://image.tmdb.org/t/p/original${movie.poster_path}') no-repeat center center">
-            </div>
-            <p>${movie.title}</p>
+        <div class="movie-img-cont" style="background: url(${movie.poster_path ? 'http://image.tmdb.org/t/p/original' + movie.poster_path : 'assets/no-image.png'}) no-repeat center center"></div>
+        <p>${movie.title}</p>
         </li>`
 
         ).join('');
@@ -90,15 +89,25 @@ const bringMoviesHome = (url, i) =>
         agregarOnclick();
 })
 
+// {/* <div class="movie-img-cont" style="background: url('http://image.tmdb.org/t/p/original${movie.poster_path}') no-repeat center center"></div> */}
+
+
 bringMoviesHome(urlPopular, 0);
 bringMoviesHome(urlTopRated, 1);
 bringMoviesHome(urlUpcoming, 2);
 bringMoviesHome(urlNowPlaying, 3);
 
-
-// FETCH for each category
+//-
 
 const catList = document.querySelector('#main-category .movies-list');
+const loadMoreButton = document.querySelector('#main-category .load-cont button');
+const notFoundMsg = document.querySelector('#not-found-cont');
+const wrapper = document.querySelector('#main-category .wrapper');
+
+let showNotFound = () => {wrapper.style.display = 'none'; notFoundMsg.style.display = 'block'};
+let hideNotFound = () => {notFoundMsg.style.display = 'none'; wrapper.style.display = 'block'};
+
+// FETCH for each category
 
 const bringMoviesCat = (url) =>
 
@@ -107,13 +116,19 @@ const bringMoviesCat = (url) =>
     .then(data => {
 
         const movies = data.results;
+
+        if(movies.length==0){
+            loadMoreButton.style.display = 'none'
+            showNotFound();
+            }else if (movies.length<20){loadMoreButton.style.display = 'none'
+                }else {loadMoreButton.style.display = 'inline-block'};
+
         const movieAmount = document.querySelector('#main-category .movies-header span');
         
         let lis = movies.map(movie =>
             
         `<li id='${movie.id}' class="movies-item">
-            <div class="movie-img-cont" style="background: url('http://image.tmdb.org/t/p/original${movie.poster_path}') no-repeat center center">
-            </div>
+            <div class="movie-img-cont" style="background: url('http://image.tmdb.org/t/p/original${movie.poster_path}') no-repeat center center"></div>
             <p>${movie.title}</p>
         </li>`
         ).join('');
@@ -155,6 +170,8 @@ navitem.forEach(a => {
         }
 
         fav();
+
+        hideNotFound();
 
         if(actual==2) {
             categoryName.textContent = 'Popular Movies';
@@ -210,9 +227,11 @@ searchInput.addEventListener('submit', function(e) {
     if(movieSearched) {
         homeParent.style.display = "none";
         document.querySelector('#main-category').style.display = "block";
+        hideNotFound();
         categoryName.textContent = 'Search Results';
         let urlSearch = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${movieSearched}&page=${paginaActual}`;
         bringMoviesCat(urlSearch);
+        
         agregarOnclick();
     }
 
@@ -229,6 +248,7 @@ const concatResults = (url) => {
         .then(data => { 
             
             const results = data.results;
+
             let lis = results.map(movie => 
                 `<li id='${movie.id}' class="movies-item">
                 <div class="movie-img-cont" style="background: url('http://image.tmdb.org/t/p/original${movie.poster_path}') no-repeat center center">
@@ -245,7 +265,7 @@ const concatResults = (url) => {
 
 
 // Load more button
-const loadMoreButton = document.querySelector('#main-category .load-cont button');
+// const loadMoreButton = document.querySelector('#main-category .load-cont button');
 let urlSearch = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${movieSearched}&page=${paginaActual}`;
 
 loadMoreButton.addEventListener('click', function(e){
@@ -265,6 +285,7 @@ loadMoreButton.addEventListener('click', function(e){
         let urlSearch = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query='${movieSearched}${pageAdd}`;
         concatResults(urlSearch+pageAdd);
     }
+
 })
 
 // MODAL CLOSE
@@ -281,11 +302,11 @@ window.addEventListener('click', clickOutsideModal)
 
 function clickOutsideModal(e) {
     const modal = document.querySelector('#movie-modal');
-    const modalBox = document.querySelector('#movie-modal-box');
     
     if (e.target === modal) {
         modal.style.display = 'none';
     }
 }
+
 
 

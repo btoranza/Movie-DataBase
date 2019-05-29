@@ -170,7 +170,6 @@ body {
     width: $main-section-width;
     margin-top: 75px;
     margin-left: 95px;
-    background-color: lightpink;
 
     // HEADER
     #header-cont {
@@ -291,6 +290,33 @@ body {
                     outline: none;
                     background-color: transparent;
                 }
+            }
+        }
+    }
+
+    #not-found-cont {
+        position: relative;
+        display: none;
+
+        #not-found {
+            background: url(assets/moon-surface.jpg);
+            @include centrar();
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: calc(100vh - 75px);
+            opacity: 0.7;
+        }
+
+        #not-found-title {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+
+            h1{
+                font-size: 28px;
+                font-weight: 500;
+                color: #081c24;
             }
         }
     }
@@ -550,6 +576,21 @@ body {
                 }
             }
         }
+
+        #not-found-cont {
+            #not-found-title {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                width: 100%;
+                transform: translate(-50%, -50%);
+                left: 75%;
+                
+                h1 {
+                    font-size: 24px;
+                }
+            }
+        }
     }
 
     #movie-modal {
@@ -603,12 +644,10 @@ body {
 
                         }
                     }
-                    
                 }
             }
         }
     }
-
 }
 
 //BIG DESKTOP
