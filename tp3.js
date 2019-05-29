@@ -283,7 +283,7 @@ function clickOutsideModal(e) {
     const modal = document.querySelector('#movie-modal');
     const modalBox = document.querySelector('#movie-modal-box');
     
-    if (e.target !== modalBox) {
+    if (e.target === modal) {
         modal.style.display = 'none';
     }
 }
