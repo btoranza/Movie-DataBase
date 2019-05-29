@@ -276,3 +276,16 @@ closeButton.addEventListener('click', e => {
 
     modal.style.display = 'none';
 })
+
+window.addEventListener('click', clickOutsideModal)
+
+function clickOutsideModal(e) {
+    const modal = document.querySelector('#movie-modal');
+    const modalBox = document.querySelector('#movie-modal-box');
+    
+    if (e.target !== modalBox) {
+        modal.style.display = 'none';
+    }
+}
+
+
