@@ -32,7 +32,10 @@ body {
       cursor: pointer; }
       #nav-container #top-nav #left-corner-top #logo-container {
         width: 45px;
-        height: 45px; }
+        height: 45px;
+        transition: transform .5s ease; }
+        #nav-container #top-nav #left-corner-top #logo-container:hover {
+          transform: scale(1.05); }
         #nav-container #top-nav #left-corner-top #logo-container img {
           width: 100%;
           height: auto; }
@@ -184,7 +187,8 @@ body {
             letter-spacing: .5px;
             color: rgba(8, 28, 36, 0.5);
             font-weight: 300;
-            padding-top: 15px; }
+            padding-top: 15px;
+            cursor: pointer; }
       #main-section .wrapper .movies .load-cont, #main-category .wrapper .movies .load-cont {
         padding: 25px 0;
         text-align: center; }
@@ -224,47 +228,49 @@ body {
     #movie-modal #movie-modal-box #movie-modal-header {
       height: 350px;
       position: relative;
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: 50% 50%;
       background-color: #081c24; }
-      #movie-modal #movie-modal-box #movie-modal-header #modal-close-button {
-        position: absolute;
-        right: 0px;
-        top: 0px;
-        height: 40px;
-        width: 40px;
-        background-color: transparent;
-        border: none;
-        cursor: pointer; }
-        #movie-modal #movie-modal-box #movie-modal-header #modal-close-button:hover {
-          background-color: #bc3b69; }
-        #movie-modal #movie-modal-box #movie-modal-header #modal-close-button i {
-          font-size: 2em;
-          color: #fff; }
-      #movie-modal #movie-modal-box #movie-modal-header #movie-modal-poster {
-        background: #081c24;
-        display: block;
-        position: absolute;
-        width: calc(45% - 40px);
-        top: 40px;
-        left: 40px;
-        height: 458px; }
-      #movie-modal #movie-modal-box #movie-modal-header #movie-modal-title {
-        width: 55%;
-        text-align: left;
-        margin-left: 45%;
-        padding: 130px 30px 30px 40px; }
-        #movie-modal #movie-modal-box #movie-modal-header #movie-modal-title h1 {
-          font-size: 30px;
-          font-weight: 500;
-          line-height: 1.4;
-          color: #bc3b69;
-          margin: 10px 0px; }
-        #movie-modal #movie-modal-box #movie-modal-header #movie-modal-title span {
-          font-size: 14px;
-          font-weight: 300;
-          color: rgba(255, 255, 255, 0.7); }
+    #movie-modal #movie-modal-box #modal-close-button {
+      position: absolute;
+      right: 0px;
+      top: 0px;
+      height: 40px;
+      width: 40px;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      z-index: 1; }
+      #movie-modal #movie-modal-box #modal-close-button:hover {
+        background-color: #bc3b69; }
+      #movie-modal #movie-modal-box #modal-close-button i {
+        font-size: 2em;
+        color: #fff; }
+    #movie-modal #movie-modal-box #movie-modal-title {
+      width: 55%;
+      text-align: left;
+      margin-left: 45%;
+      padding: 130px 30px 30px 40px;
+      position: absolute;
+      top: 0px; }
+      #movie-modal #movie-modal-box #movie-modal-title h1 {
+        font-size: 30px;
+        font-weight: 500;
+        line-height: 1.4;
+        color: #bc3b69;
+        margin: 10px 0px; }
+      #movie-modal #movie-modal-box #movie-modal-title span {
+        font-size: 14px;
+        font-weight: 300;
+        color: rgba(255, 255, 255, 0.7); }
+    #movie-modal #movie-modal-box #movie-modal-poster {
+      background: #081c24;
+      display: block;
+      position: absolute;
+      width: calc(45% - 40px);
+      top: 40px;
+      left: 40px;
+      height: 458px;
+      width: calc(45% - 40px);
+      background-size: cover !important; }
     #movie-modal #movie-modal-box #movie-modal-main {
       min-height: 0;
       background-color: #f8f8f8; }
@@ -373,17 +379,18 @@ body {
       display: flex;
       justify-content: center;
       align-items: center; }
-      #movie-modal #movie-modal-box #movie-modal-header #movie-modal-poster {
-        display: none; }
-      #movie-modal #movie-modal-box #movie-modal-header #movie-modal-title {
-        width: 100%;
-        margin: auto;
-        text-align: center;
-        padding: 20px; }
-        #movie-modal #movie-modal-box #movie-modal-header #movie-modal-title h1 {
-          font-weight: 500;
-          line-height: 1.4;
-          font-size: 24px; }
+    #movie-modal #movie-modal-box #movie-modal-poster {
+      display: none; }
+    #movie-modal #movie-modal-box #movie-modal-title {
+      width: 100%;
+      margin: auto;
+      text-align: center;
+      padding: 20px;
+      margin-top: 14%; }
+      #movie-modal #movie-modal-box #movie-modal-title h1 {
+        font-weight: 500;
+        line-height: 1.4;
+        font-size: 24px; }
     #movie-modal #movie-modal-box #movie-modal-main {
       min-height: calc(100% - 250px); }
       #movie-modal #movie-modal-box #movie-modal-main #movie-modal-info {

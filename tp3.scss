@@ -34,10 +34,6 @@ body {
     visibility: visible!important;
 }
 
-.active {
-    display: block;
-}
-
 // NAV BARS
 
 #nav-container {
@@ -62,6 +58,10 @@ body {
             #logo-container {
                 width: 45px;
                 height: 45px;
+                transition: transform .5s ease;
+
+                &:hover {
+                    transform: scale(1.05)}
                 img {
                     width: 100%;
                     height: auto;
@@ -268,6 +268,7 @@ body {
                         color: rgba(8,28,36,.5);
                         font-weight: 300;
                         padding-top: 15px;
+                        cursor: pointer;
                     }
 
                 }
@@ -321,61 +322,63 @@ body {
         #movie-modal-header {
             height: 350px;
             position: relative;
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: 50% 50%;
             background-color: #081c24;
+        }
 
-            #modal-close-button {
-                position: absolute;
-                right: 0px;
-                top: 0px;
-                height: 40px;
-                width: 40px;
-                background-color: transparent;
-                border: none;
-                cursor: pointer;
-                
-                &:hover {
-                    background-color: #bc3b69;
-                }
-
-                i {
-                    font-size: 2em;
-                    color: #fff;
-                }
+        #modal-close-button {
+            position: absolute;
+            right: 0px;
+            top: 0px;
+            height: 40px;
+            width: 40px;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 1;
+            
+            &:hover {
+                background-color: #bc3b69;
             }
 
-            #movie-modal-poster {
-                background: #081c24;
-                display: block;
-                position: absolute;
-                width: calc(45% - 40px);
-                top: 40px;
-                left: 40px;  
-                height: 458px;          
+            i {
+                font-size: 2em;
+                color: #fff;
+            }
+        }
+
+        #movie-modal-title {
+            width: 55%;
+            text-align: left;
+            margin-left: 45%;
+            padding: 130px 30px 30px 40px;
+            position: absolute;
+            top: 0px;
+
+            h1 {
+                font-size: 30px;
+                font-weight: 500;
+                line-height: 1.4;
+                color: #bc3b69;
+                margin: 10px 0px;
             }
 
-            #movie-modal-title {
-                width: 55%;
-                text-align: left;
-                margin-left: 45%;
-                padding: 130px 30px 30px 40px;
-
-                h1 {
-                    font-size: 30px;
-                    font-weight: 500;
-                    line-height: 1.4;
-                    color: #bc3b69;
-                    margin: 10px 0px;
-                }
-
-                span {
-                    font-size: 14px;
-                    font-weight: 300;
-                    color: hsla(0,0%,100%,.7);
-                }
+            span {
+                font-size: 14px;
+                font-weight: 300;
+                color: hsla(0,0%,100%,.7);
             }
+        }
+
+        #movie-modal-poster {
+            background: #081c24;
+            display: block;
+            position: absolute;
+            width: calc(45% - 40px);
+            top: 40px;
+            left: 40px;  
+            height: 458px;
+            width: calc(45% - 40px);
+            background-size: cover !important;          
         }
 
         #movie-modal-main {
@@ -557,22 +560,23 @@ body {
             #movie-modal-header {
                 height: 250px;
                 @include centrar();
+            }
 
-                #movie-modal-poster {
-                    display: none;
-                }
+            #movie-modal-poster {
+                display: none;
+            }
 
-                #movie-modal-title {
-                    width: 100%;
-                    margin: auto;
-                    text-align: center;
-                    padding: 20px;
+            #movie-modal-title {
+                width: 100%;
+                margin: auto;
+                text-align: center;
+                padding: 20px;
+                margin-top: 14%;
 
-                    h1 {
-                        font-weight: 500;
-                        line-height: 1.4;
-                        font-size: 24px;
-                    }
+                h1 {
+                    font-weight: 500;
+                    line-height: 1.4;
+                    font-size: 24px;
                 }
             }
 

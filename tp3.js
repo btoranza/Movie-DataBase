@@ -1,9 +1,66 @@
 // main URLs for FETCH
 
-let urlPopular = 'https://api.themoviedb.org/3/movie/popular?api_key=24da6765990bd746993a94b165592b4f';
-let urlTopRated = 'https://api.themoviedb.org/3/movie/top_rated?api_key=24da6765990bd746993a94b165592b4f';
-let urlUpcoming = 'https://api.themoviedb.org/3/movie/upcoming?api_key=24da6765990bd746993a94b165592b4f'
-let urlNowPlaying = 'https://api.themoviedb.org/3/movie/now_playing?api_key=24da6765990bd746993a94b165592b4f';
+let apiKey = '24da6765990bd746993a94b165592b4f';
+let urlPopular = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`;
+let urlTopRated = `https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}`
+let urlUpcoming = `https://api.themoviedb.org/3/movie/upcoming?api_key=${apiKey}`
+let urlNowPlaying = `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}`
+
+
+// TO ADD EVENTS FUNCTION FOR MODAL
+
+const agregarOnclick = () => {
+
+    const clickedMovie = document.querySelectorAll('.movies-item');
+    const modal = document.querySelector('#movie-modal');
+
+    clickedMovie.forEach(movie => {
+        movie.onclick = e => {
+
+            const movieId = e.currentTarget.id;
+
+            fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}`)
+            .then(res => res.json())
+            .then(data => {
+                
+                //imagen header modal
+                const movieHeader = document.querySelector('#movie-modal-header');
+                movieHeader.style.background = `url('http://image.tmdb.org/t/p/original${data.backdrop_path}')`;
+                movieHeader.style.backgroundSize = 'cover';
+                movieHeader.style.opacity = '0.3';
+
+                //tagline
+                document.querySelector('#movie-modal-title').innerHTML = `<h1>${data.title}</h1><span>${data.tagline}</span>`;
+
+                //poster
+                document.querySelector('#movie-modal-poster').style.background = `url('http://image.tmdb.org/t/p/original${data.poster_path}') no-repeat center center`
+
+                //overview
+                document.querySelector('#movie-modal-description').innerHTML = `<span>${data.overview}</span>`;
+
+                //genres
+                let genres = data.genres.map(genre => 
+                    genre.name)
+                    .join(', ')
+
+                document.querySelector('#genres').innerHTML = `<h1>GENRES</h1><span>${genres}</span>`;
+
+                //release date
+                let releaseDate = new Date(data.release_date);
+                releaseDate = new Date(releaseDate.setDate(releaseDate.getDate()+1));
+                releaseDate = releaseDate.toDateString();
+                releaseDate = releaseDate.slice(3, releaseDate.length);
+
+                document.querySelector('#release-date').innerHTML = `<h1>RELEASE DATE</h1><span>${releaseDate}</span>`
+
+                //open modal
+                modal.style.display = 'block'
+            })
+        }
+    })
+}
+
+
 
 // Fetch for HOME
 
@@ -20,31 +77,23 @@ const bringMoviesHome = (url, i) =>
         
         let lis = fiveMovies.map(movie =>
             
-        `<li class="movies-item">
+        `<li id='${movie.id}' class="movies-item">
             <div class="movie-img-cont" style="background: url('http://image.tmdb.org/t/p/original${movie.poster_path}') no-repeat center center">
             </div>
             <p>${movie.title}</p>
         </li>`
+
         ).join('');
 
-        ul.innerHTML = lis;    
+        ul.innerHTML = lis;       
         
-        const clickedMovie = document.getElementsByClassName('movies-item');
-
-        for (let i = 0; i < clickedMovie.length; i++) {
-            clickedMovie[i].addEventListener('click', function(e){
-                console.log('Se esta ejecutando el evento on clic')
-                console.log(e);
-            })
-            
-        }
+        agregarOnclick();
 })
 
 bringMoviesHome(urlPopular, 0);
 bringMoviesHome(urlTopRated, 1);
 bringMoviesHome(urlUpcoming, 2);
 bringMoviesHome(urlNowPlaying, 3);
-
 
 
 // FETCH for each category
@@ -62,7 +111,7 @@ const bringMoviesCat = (url) =>
         
         let lis = movies.map(movie =>
             
-        `<li class="movies-item">
+        `<li id='${movie.id}' class="movies-item">
             <div class="movie-img-cont" style="background: url('http://image.tmdb.org/t/p/original${movie.poster_path}') no-repeat center center">
             </div>
             <p>${movie.title}</p>
@@ -70,8 +119,9 @@ const bringMoviesCat = (url) =>
         ).join('');
 
         catList.innerHTML = lis;
-        movieAmount.textContent = data.total_results+' results';
+        movieAmount.textContent = `${data.total_results} results`
 
+        agregarOnclick();    
         
 })
 
@@ -82,18 +132,17 @@ const principal = document.querySelector('.principal');
 const navitem = document.querySelectorAll(".nav-item");
 let actual = 0;
 
-principal.addEventListener('click', function (e) {
+principal.addEventListener('click', () => {
     if(actual != 1){
         document.querySelector('#main-category').style.display = "none";
         homeParent.style.display = "block";
     } 
     actual = 1;
-    
 });
 
 const catMenu = document.querySelector('#left-nav');
 
-navitem.forEach(function(a){
+navitem.forEach(a => {
     a.addEventListener('click', function (e) {
         let numero = parseInt(a.getAttribute("numero"));
         actual = numero;
@@ -106,7 +155,6 @@ navitem.forEach(function(a){
         }
 
         fav();
-
 
         if(actual==2) {
             categoryName.textContent = 'Popular Movies';
@@ -160,22 +208,21 @@ searchInput.addEventListener('submit', function(e) {
     actual = 6;
     movieSearched = input.value;
     if(movieSearched) {
-    homeParent.style.display = "none";
-    document.querySelector('#main-category').style.display = "block";
-    categoryName.textContent = 'Search Results';
-    let urlSearch = 'https://api.themoviedb.org/3/search/movie?api_key=24da6765990bd746993a94b165592b4f&query='+movieSearched+'&page='+paginaActual;
-    bringMoviesCat(urlSearch);
-
+        homeParent.style.display = "none";
+        document.querySelector('#main-category').style.display = "block";
+        categoryName.textContent = 'Search Results';
+        let urlSearch = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${movieSearched}&page=${paginaActual}`;
+        bringMoviesCat(urlSearch);
+        agregarOnclick();
     }
 
     if(catMenu.classList.contains('show')){
         catMenu.classList.remove('show');
     }
-    fav();
 
 })
 
-const concatResults = (url) => 
+const concatResults = (url) => {
 
     fetch(url) 
         .then(res => res.json())
@@ -183,7 +230,7 @@ const concatResults = (url) =>
             
             const results = data.results;
             let lis = results.map(movie => 
-                `<li class="movies-item">
+                `<li id='${movie.id}' class="movies-item">
                 <div class="movie-img-cont" style="background: url('http://image.tmdb.org/t/p/original${movie.poster_path}') no-repeat center center">
                 </div>
                 <p>${movie.title}</p>
@@ -191,18 +238,20 @@ const concatResults = (url) =>
             ).join('');
 
             catList.innerHTML += lis;
+            agregarOnclick();
 
         })
+}
 
 
 // Load more button
 const loadMoreButton = document.querySelector('#main-category .load-cont button');
-let urlSearch = 'https://api.themoviedb.org/3/search/movie?api_key=24da6765990bd746993a94b165592b4f&query='+movieSearched+'&page='+paginaActual;
+let urlSearch = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${movieSearched}&page=${paginaActual}`;
 
 loadMoreButton.addEventListener('click', function(e){
 
     paginaActual += 1;
-    pageAdd = '&page='+paginaActual;
+    pageAdd = `&page=${paginaActual}`;
 
     if(actual==2) {
         concatResults(urlPopular+pageAdd);
@@ -213,10 +262,17 @@ loadMoreButton.addEventListener('click', function(e){
     }else if (actual==5) {
         concatResults(urlNowPlaying+pageAdd);
     }else if(actual==6){
-        let urlSearch = 'https://api.themoviedb.org/3/search/movie?api_key=24da6765990bd746993a94b165592b4f&query='+movieSearched+pageAdd;
+        let urlSearch = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query='${movieSearched}${pageAdd}`;
         concatResults(urlSearch+pageAdd);
     }
 })
 
+// MODAL CLOSE
 
+let closeButton = document.querySelector('#modal-close-button');
 
+closeButton.addEventListener('click', e => {
+    const modal = document.querySelector('#movie-modal');
+
+    modal.style.display = 'none';
+})
