@@ -27,24 +27,25 @@ const bringMoviesHome = (url, i) =>
         </li>`
         ).join('');
 
-        ul.innerHTML = lis;
+        ul.innerHTML = lis;    
+        
+        const clickedMovie = document.getElementsByClassName('movies-item');
 
-        const clickedMovie = document.querySelectorAll('.movies-item');
-        const modalm = document.querySelector('#movie-modal');
-
-        clickedMovie.forEach(function (movieItem){
-            movieItem.addEventListener('click', function (event){
-                modalm.classList.toggle('active');
+        for (let i = 0; i < clickedMovie.length; i++) {
+            clickedMovie[i].addEventListener('click', function(e){
+                console.log('Se esta ejecutando el evento on clic')
+                console.log(e);
             })
             
-})
-        
+        }
 })
 
 bringMoviesHome(urlPopular, 0);
 bringMoviesHome(urlTopRated, 1);
 bringMoviesHome(urlUpcoming, 2);
 bringMoviesHome(urlNowPlaying, 3);
+
+
 
 // FETCH for each category
 
