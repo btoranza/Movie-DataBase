@@ -159,34 +159,41 @@ const catMenu = document.querySelector('#left-nav');
 
 navitem.forEach(a => {
     a.addEventListener('click', function (e) {
-        let numero = parseInt(a.getAttribute("numero"));
-        actual = numero;
-        homeParent.style.display = "none";
-        document.querySelector('#main-category').style.display = "block";
-        let pageAdd= '&page=1';
 
-        if(catMenu.classList.contains('show')){
-            catMenu.classList.remove('show');
+        function catDivs() {
+            let numero = parseInt(a.getAttribute("numero"));
+            actual = numero;
+            homeParent.style.display = "none";
+            document.querySelector('#main-category').style.display = "block";
+            let pageAdd= '&page=1';
+    
+            if(catMenu.classList.contains('show')){
+                catMenu.classList.remove('show');
+            }
+    
+            fav();
+    
+            hideNotFound();
+    
+            if(actual==2) {
+                categoryName.textContent = 'Popular Movies';
+                bringMoviesCat(urlPopular+pageAdd);
+            }else if (actual==3) {
+                categoryName.textContent = 'Top Rated Movies';
+                bringMoviesCat(urlTopRated+pageAdd);
+            }else if (actual==4) {
+                categoryName.textContent = 'Upcoming Movies';
+                bringMoviesCat(urlUpcoming+pageAdd);
+            }else if (actual==5) {
+                categoryName.textContent = 'Now Playing Movies';
+                bringMoviesCat(urlNowPlaying+pageAdd)
+            }
         }
 
-        fav();
-
-        hideNotFound();
-
-        if(actual==2) {
-            categoryName.textContent = 'Popular Movies';
-            bringMoviesCat(urlPopular+pageAdd);
-        }else if (actual==3) {
-            categoryName.textContent = 'Top Rated Movies';
-            bringMoviesCat(urlTopRated+pageAdd);
-        }else if (actual==4) {
-            categoryName.textContent = 'Upcoming Movies';
-            bringMoviesCat(urlUpcoming+pageAdd);
-        }else if (actual==5) {
-            categoryName.textContent = 'Now Playing Movies';
-            bringMoviesCat(urlNowPlaying+pageAdd);}    
+        catDivs();
+        
     })
-});
+})
 
 // Menu mobile
 
@@ -308,5 +315,32 @@ function clickOutsideModal(e) {
     }
 }
 
+//view all
+let viewAllButtons = document.querySelectorAll('.view-all');
+console.log(viewAllButtons);
 
+viewAllButtons.forEach(button => {
+    button.addEventListener('click', function() {
+        let numero = parseInt(button.getAttribute('numero'));
+        actual = numero;
+        homeParent.style.display = "none";
+        document.querySelector('#main-category').style.display = "block";
+        let pageAdd= '&page=1';
 
+        if(actual==2) {
+            categoryName.textContent = 'Popular Movies';
+            bringMoviesCat(urlPopular+pageAdd);
+        }else if (actual==3) {
+            categoryName.textContent = 'Top Rated Movies';
+            bringMoviesCat(urlTopRated+pageAdd);
+        }else if (actual==4) {
+            categoryName.textContent = 'Upcoming Movies';
+            bringMoviesCat(urlUpcoming+pageAdd);
+        }else if (actual==5) {
+            categoryName.textContent = 'Now Playing Movies';
+            bringMoviesCat(urlNowPlaying+pageAdd)
+        }
+
+    })
+
+})
